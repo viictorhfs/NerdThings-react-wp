@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 2. Navigate to the folder with **cd nerdthings** on your terminal
 
-3. Install npm package manager with **npm install** on the terminal
+3. Install npm package manager with **npm install**
 
 4. Run **npm start**
 
