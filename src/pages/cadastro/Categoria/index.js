@@ -28,7 +28,9 @@ function CadastroCategoria() {
 
   useEffect(() => {
     console.log("alou alou");
-    const URL_JSON = "http://localhost:8080/categoria";
+    const URL_JSON = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categoria'
+      : 'https://nerdthings.herokuapp.com/categoria';
 
     fetch(URL_JSON).then(async (respostaServidor) => {
       const resposta = await respostaServidor.json();
