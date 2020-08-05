@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
+
 
 function CadastroCategoria() {
   const valoresInicias = {
@@ -11,51 +13,39 @@ function CadastroCategoria() {
     cor: '',
   };
 
+  const { handleChange, valores, clearForm } = useForm(valoresInicias);
   const [categorias, setCategorias] = useState([]);
-  const [valores, setValores] = useState(valoresInicias);
-
-  function setValor(chave, valor) {
-    // chave: nome, descrição etc...
-    setValores({
-      ...valores,
-      [chave]: valor, // nome: 'valor'
-    });
-  }
-
-  function handleChange(infoDoEvento) {
-    setValor(infoDoEvento.target.getAttribute('name'), infoDoEvento.target.value);
-  }
 
   useEffect(() => {
-    console.log("alou alou");
-    const URL_JSON = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categoria'
-      : 'https://nerdthings.herokuapp.com/categoria';
+    const URL_TOP = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://devsoutinhoflix.herokuapp.com/categorias';
+    // E a ju ama variáveis
+    fetch(URL_TOP)
+      .then(async (respostaDoServidor) => {
+        const resposta = await respostaDoServidor.json();
+        setCategorias([
+          ...resposta,
+        ]);
+      });
 
-    fetch(URL_JSON).then(async (respostaServidor) => {
-      const resposta = await respostaServidor.json();
-      setCategorias([
-        ...resposta,
-      ]);
-    });
-
-    /*     setTimeout(() => {
-          setCategorias([
-            ...categorias,
-            {
-              "id": 1,
-              "nome": "Front-End",
-              "descricao": "Uma categoria show",
-              "cor": "#CBD1FF"
-            },
-            {
-              "id": 2,
-              "nome": "Back-End",
-              "descricao": "Outra categoria show",
-              "cor": "#CBD1FF"
-            },
-          ]);
-        }, 4 * 1000); */
+    // setTimeout(() => {
+    //   setCategorias([
+    //     ...categorias,
+    //     {
+    //       id: 1,
+    //       nome: 'Front End',
+    //       descricao: 'Uma categoria bacanudassa',
+    //       cor: '#cbd1ff',
+    //     },
+    //     {
+    //       id: 2,
+    //       nome: 'Back End',
+    //       descricao: 'Outra categoria bacanudassa',
+    //       cor: '#cbd1ff',
+    //     },
+    //   ]);
+    // }, 4 * 1000);
   }, []);
 
 
@@ -73,7 +63,7 @@ function CadastroCategoria() {
           valores,
         ]);
 
-        setValores(valoresInicias);
+        clearForm(valoresInicias);
       }}
       >
 
@@ -113,11 +103,13 @@ function CadastroCategoria() {
       </form>
 
       <ul>
-        {categorias.map((categoria, indice) => (
-          <li key={`${categoria}${indice}`}>
-            {categoria.nome}
-          </li>
-        ))}
+        {categorias.map((categoria, indice) => {
+          return (
+            <li key={`${categoria}${indice}`}>
+              {categoria.titulo}
+            </li>
+          )
+        })}
       </ul>
 
       <Link to="/">
