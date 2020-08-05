@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 3. Install npm package manager with **npm install**
 
-4. Run **npm start**
+4. Run **npm run dev**
 
 
 ## Learn More about Create React App
