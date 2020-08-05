@@ -2,15 +2,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Imersão Alura - ReactJS
 
-### `How to install`
 
-1. Use **$git clone** to clone this repository into your computer
 
-2. Navigate to the folder with **cd nerdthings** on your terminal
+### `Como instalar`
 
-3. Install npm package manager with **npm install**
+1. Use **$git clone** para clonar esse repositório
 
-4. Run **npm run dev**
+2. Navegueaté a pasta com **cd nerdthings** no seu terminal
+
+3. Caso não tenha já instalado o npm package manager, rode **npm install**
+
+4. rode **npm run dev** no terminal
+
+#### Working Progress
 
 
 ## Learn More about Create React App
